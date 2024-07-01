@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/base_light_mode.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base_night_mode.css' %}">
 
 </head>
 <body>
@@ -29,11 +29,27 @@
         </nav>
     </header>
 
-<div class="mainContain">
-    
-</div>
+    <div class="mainContain">
+        
+    </div>
     <footer class="fot">
         <h1>pr</h1>
+    </footer>
+    <footer class="fot">
+        <nav class="navbar navbar-expand-sm  navbar-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="" class="nav-link">
+                        Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">
+                        Privacidad</a>
+                </li>
+            </ul>
+
+        </nav>
+        <h6 class="copy">&copy; Todos los derechos reservados - Dragonf-j - <?php $year= date("Y"); echo $year;?></h6>
     </footer>
 </body>
 </html>

@@ -37,9 +37,13 @@ body{
     position: relative;
 }
 .mainContain{
-    min-height: 100%;
-    display: flex;
+    height: auto;
+    width: 100%;
+    border: red 2px solid;
     flex-direction: column;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
 }
 
 a{
@@ -102,3 +106,4 @@ li {
 li:hover {
     filter: brightness(110%);
 }
+
