@@ -1,0 +1,109 @@
+html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgb(55, 65, 81), rgb(17, 24, 39), rgb(0, 0, 0));/* linear-gradient(to top, rgb(29, 78, 216), rgb(30, 64, 175), rgb(17, 24, 39)); Aplica el gradiente al fondo de la página */
+    box-sizing: border-box;
+    color: whitesmoke;
+}
+body{
+    margin: 0;
+}
+.Cab {
+    border-radius: 0; /* Sin redondeo para los bordes superiores */
+    border-top: 0; /* Elimina el borde superior */
+    border-left: 0; /* Elimina el borde izquierdo */
+    border-right: 0; /* Elimina el borde derecho */
+    border-bottom: 2px solid black; /* Mantiene solo el borde inferior */
+    width: 100%; /* Hace que la cabecera ocupe el 100% del ancho de la página */
+    box-sizing: border-box; /* Incluye el padding y el border en el ancho total */
+    padding: 10px; /* Puedes ajustar el padding según tus necesidades */
+    /* Aplica el mismo gradiente al fondo de la cabecera */
+    margin-top: 0;
+}
+
+.fot{
+    border-radius: 0; /* Sin redondeo para los bordes superiores */
+    border-top:  2px solid black; /* Elimina el borde superior */
+    border-left: 0; /* Elimina el borde izquierdo */
+    border-right: 0; /* Elimina el borde derecho */
+    border-bottom: 0;/* Mantiene solo el borde inferior */
+    width: 100%; /* Hace que la cabecera ocupe el 100% del ancho de la página */
+    box-sizing: content-box; /* Incluye el padding y el border en el ancho total */
+    padding: 10px; /* Puedes ajustar el padding según tus necesidades */
+ /* Aplica el mismo gradiente al fondo de la cabecera */
+    margin-top: 0;
+    position: relative;
+}
+.mainContain{
+    height: auto;
+    width: 100%;
+    border: red 2px solid;
+    flex-direction: column;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+a{
+    color: whitesmoke;
+}
+
+ul{
+    display: none;
+}
+
+input:checked  ~ ul{
+    display:block;
+}
+
+input {
+    display: none;
+}
+
+label {
+    box-sizing: border-box;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+}
+
+/* Estilo del boton cuando se pasa el mouse por encima*/
+label:hover{
+    background: grey;
+}
+
+/* Estilo del boton cuando el menú está expandido*/
+input:checked ~ label {
+    background: lightgrey; 
+}
+
+ul{
+    margin-top:0;
+    padding: 0;
+    width: 200px;
+
+}
+
+
+li {
+    display: block;
+    background: lightgrey;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+    border-bottom: 1px solid grey;
+}
+
+/*Estilo cuando el mouse pasa encima de cada link del menu*/
+li:hover {
+    filter: brightness(110%);
+}
+
