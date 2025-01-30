@@ -2,8 +2,6 @@
 
 {% load static %}
 
-
-
 {% block content %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'js/formLaptop.js' %}"></script>
@@ -24,11 +22,9 @@
     </div>
     <div id="dynamic-laptop-questions"></div>
     
-    <input type="button" value="Siguiente" id="nextStep" >
+    <input type="button" value="Siguiente" id="nextStep">
     <input type="button" value="Anterior" id="previusStep" onclick="previusStep()">
     <input type="button" value="Enviar" id="send" onclick="finish()">
 </form>
-</div>
-
-
+</div
 {% endblock %}
