@@ -7,32 +7,114 @@
     {% load static %}
     <!--<link rel="stylesheet" href="{% static 'css/base_night_mode.css' %}">-->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <script src=""{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body class="text-bg-secondary">
+    <!--Cabecera-->
     <header class="text-bg-dark">
+        <!--Titulo-->
         <h1>TecnoFind</h1>
+        <!--Navegacion-->
         <nav class="nav">
             <ul class=" nav nav-tabs nav-justified">
-                <li class="pagination nav-item">
-                    <a href="" class="submnu nav-link">Móvil</a>
+            <!-- Dropdown Móvil -->
+                <li class="nav-item dropdown ">
+                    <button class="nav-link dropdown-toggle" id="movilDropdown" role="button" data-bs-toggle="dropdown" >Móvil</button>
+                    <ul class="dropdown-menu">
+                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
+                            <a href="{% url 'formPhones' %}" class="dropdown-item">Formulario para elegir tu móvil</a>
+                        </li>
+                        <li class="{% if request.path == '/todos/' %}active{% endif %}"> 
+                            <a href="{% url 'allphones' %}" class="dropdown-item">Todos los móviles</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="pagination"> 
-                    <a href="" class="submnu nav-link">Portátil</a>
+                <!--Auriculares-->
+                <li class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle" id="AuricularDropdown" role="button" data-bs-toggle="dropdown">Auriculares</button>
+                    <ul class="dropdown-menu">
+                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
+                            <a href="{% url 'formheadphones' %}" class="dropdown-item">Formulario para elegir tu Auricular</a>
+                        </li>
+                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
+                            <a href="{% url 'allheadphones' %}" class="dropdown-item">Todos los Auriculares</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="pagination">
-                    <a href="" class="submnu nav-link">Ratón</a>
+                <!--Tablets-->
+                <li class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle" id="TabletDropdown" role="button" data-bs-toggle="dropdown">Tablet</button>
+                    <ul class="dropdown-menu">
+                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
+                            <a href="{% url 'formtablets' %}" class="dropdown-item">Formulario para elegir tu tablet</a>
+                        </li>
+                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
+                            <a href=" {% url 'alltablets' %}" class="dropdown-item">Todos las tablets</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Portatiles-->
+                <li class="nav-item dropdown"> 
+                    <button class="nav-link dropdown-toggle" id="PortatilDropdown" role="button" data-bs-toggle="dropdown">Portátil</button>
+                    <ul class="dropdown-menu">
+                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
+                            <a href="{% url 'formLaptops' %}" class="dropdown-item">Formulario para elegir tu portátil</a>
+                        </li>
+                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
+                            <a href="{% url 'allLaptops' %}" class="dropdown-item">Todos los portátiles</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Ratones-->
+                <li class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle" id="RatonDropdown" role="button" data-bs-toggle="dropdown">Ratón</button>
+                    <ul class="dropdown-menu">
+                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
+                            <a href="{% url 'formmouse' %}" class="dropdown-item">Formulario para elegir tu raton</a>
+                        </li>
+                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
+                            <a href="{% url 'allmouse' %}" class="dropdown-item">Todos los ratones</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Teclados-->
+                <li class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle" id="TecladoDropdown" role="button" data-bs-toggle="dropdown">Teclado</button>
+                    <ul class="dropdown-menu">
+                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
+                            <a href="{% url 'formkeyboards' %}" class="dropdown-item">Formulario para elegir tu teclado</a>
+                        </li>
+                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
+                            <a href="{% url 'formkeyboards' %}" class="dropdown-item">Todos los teclados</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Monitor-->
+                <li class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle" id="MonitorDropdown" role="button" data-bs-toggle="dropdown">Monitor</button>
+                    <ul class="dropdown-menu">
+                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
+                            <a href="{% url 'formMonitor' %}" class="dropdown-item">Formulario para elegir tu Monitor</a>
+                        </li>
+                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
+                            <a href="{% url 'allMonitor' %}" class="dropdown-item">Todos los Monitores</a>
+                        </li>
+                    </ul>
                 </li>
 
             </ul>
         </nav>
     </header>
+    <!--Cuerpo de la pagina-->
     <div class="mainContain container-fluid vh-100 d-flex align-items-center justify-content-center bg-secondary">
-        
+        {% block content %} {% endblock %}
     </div>
+    <!--Footer-->
     <footer class="fot bg-dark text-white py-4">
         <div class="col-md-4">
+            <!--Navegacion inferior-->
             <nav class="navbar navbar-expand-sm  navbar-dark">
                 <ul class="navbar-nav list-unstyledd">
                     <li class="nav-item">
@@ -47,7 +129,7 @@
             </nav>
         </div>
         <div class="text-center mt-4">
-            <h6 class="copy">&copy; Todos los derechos reservados - Dragonf-j - <?php $year= date("Y"); echo $year;?></h6>
+            <h6 class="copy">&copy; Todos los derechos reservados - Dragonf-j - {{ year }}</h6>
         </div>
     </footer>
 </body>
