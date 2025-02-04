@@ -1,0 +1,30 @@
+{% extends 'core/core.html' %}
+
+{% load static %}
+
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/formLaptop.js' %}"></script>
+<div>
+{% block title %}Formulario Portátiles{% endblock %}
+
+<form id="laptop-form">
+    <div id="firtdiv">
+        <label for="id_use_case">1.- Selecciona el propósito principal:</label>
+        <select id="id_use_case" name="use_case">
+            <option value="basic">Oficina y tareas básicas</option>
+            <option value="Estudios">Estudios</option>
+            <option value="Programacion">Programación</option>
+            <option value="DiseñoGraph">Diseño gráfico y edición de video</option>
+            <option value="gaming">Gaming</option>
+        </select>
+    </div>
+    <div id="dynamic-laptop-questions"></div>
+    
+    <input type="button" value="Siguiente" id="nextStep" onclick="nextStep()">
+    <input type="button" value="Anterior" id="previusStep" onclick="previusStep()">
+    <input type="button" value="Enviar" id="send" onclick="finish()">
+</form>
+
+</div>
+{% endblock %}
