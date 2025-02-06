@@ -24,6 +24,33 @@ $(document).ready(function () {
         marca:''
     };
 
+    // Array para guardar las preguntas
+    let questions = [
+        { id: 'rendimiento', label: '1.1- ¿Qué potencia necesitas?', options: [{text: 'bajo', value: 'bajo'}, {text: 'Medio', value: 'medio'}, {text: 'alto', value: 'alto'}, {text: 'Top', value: 'top'}] },
+        { id: 'portabilidad', label: '2- ¿Qué tamaño de pantalla prefieres?', options: [{text: 'Pequeño (entre 13 y 14 pulgadas)', value: 'pequeño'}, {text: 'Mediano (entre 14 y 16 pulgadas)', value: 'mediano'}, {text: 'Grande (17 pulgadas o mas)', value: 'grande'}] },
+        { id: 'presupuesto', label: '3- ¿Cuál es tu presupuesto?', options: [{text: 'bajo (Menos de 500€)', value: 'bajo'}, {text: 'medio (Entre 500 y 1000)', value: 'medio'}, {text: 'alto (Entre 1000 y 1500)', value: 'alto'}, {text: 'Muy alto (Mas de 2000)', value: 'muy_alto'}] },
+        { id: 'almacenamiento', label: '4- ¿Qué capacidad de almacenamiento necesitas?', options: [{text: '256 GB', value: '256'}, {text: '512 GB', value: '512'}, {text: '1 TB', value: '1024'}, {text: '2 TB', value: '2048'}] },
+        { id: 'velocidad', label: '4.1 - ¿Qué velocidad de almacenamiento quieres?', options: [{text: 'Hdd (Lento pero con alta capacidad de almacenamiento)', value: 'hdd'}, {text: 'Hibidro (Mezcla entre HDD y SSD)', value: 'hibidro'}, {text: 'Rapido (SSD)', value: 'ssd'}, {text: 'NoImporta', value: 'no_importa'}] },
+        { id: 'bateria', label: '5- ¿Qué duración de batería necesitas?', options: [{text: 'corta (Menos de 4 horas)', value: 'corta'}, {text: 'media (4-8 horas)', value: 'media'}, {text: 'larga (Más de 8 horas)', value: 'larga'}] },
+        { id: 'conexiones', label: '6- ¿Qué tipo de conexiones necesitas?', options: [{text: 'USB', value: 'usb'}, {text: 'HDMI', value: 'hdmi'}, {text: 'Ethernet', value: 'ethernet'}, {text: 'WiFi', value: 'wifi'}] },
+        { id: 'cantPuertos', label: '7- ¿Cuántos puertos necesitas?', options: [{text: '1', value: '1'}, {text: '2', value: '2'}, {text: '3', value: '3'}, {text: '4', value: '4'}] },
+        { id: 'extras', label: '8- ¿Qué extras necesitas?', options: [{text: 'Lector de huellas', value: 'lector'}, {text: 'Cámara web', value: 'camara'}, {text: 'Teclado retroiluminado', value: 'teclado'}, {text: 'Ninguno', value: 'ninguno'}] }
+    ];
+
+    // Función para generar las preguntas dinámicamente
+    function generateQuestion(step) {
+        if (step < questions.length) {
+            const question = questions[step];
+            let opciones = `<label for="${question.id}">${question.label}</label><select id="${question.id}" name="${question.id}" class="form-select">`;
+            question.options.forEach(option => {
+                opciones += `<option value="${option.value}">${option.text}</option>`;
+            });
+            opciones += `</select>`;
+            dynamicDiv.empty();
+            dynamicDiv.append(opciones);
+        }
+    }
+
     // Función que oculta los elementos según el paso en el que estén
     function hidden(step) {
         if (step === 0) {
@@ -37,229 +64,25 @@ $(document).ready(function () {
         }
     }
 
-    // Función para manejar el rendimiento según el propósito
-    function rendimiento(casoDeUso) {
-        const opciones = `
-            <label for="Rendimiento">1.1- ¿Qué potencia necesitas?</label>
-            <select id="rendimiento" name="rendimiento">
-                <option value="bajo">Rendimiento básico</option>
-                <option value="Medio">Rendimiento medio</option>
-                <option value="alto">Rendimiento alto</option>
-                <option value="Top">Top</option>
-            </select>
-        `;
-        dynamicDiv.empty();
-        if (casoDeUso) {
-            dynamicDiv.append(opciones);
-            if (casoDeUso === "gaming") {
-                dynamicDiv.append(`
-                    <label for="Extras">Hercios (desde los 60 hasta 240)</label>
-                    <input type="range" id="hz" name="hz" min="60" max="240">
-                `);
-            }
-        } else {
-            console.error("Error: casoDeUso no definido");
-        }
-    }
-
-    function portatibilidad() {
-        const opciones = `
-            <label for="Portabilidad">3- ¿Qué tamaño de pantalla prefieres?</label>
-            <select id="portabilidad" name="portabilidad">
-                <option value="13">13"</option>
-                <option value="15">15"</option>
-                <option value="17">17"</option>
-            </select>
-        `;
-        dynamicDiv.empty();
-        dynamicDiv.append(opciones);
-
-        // Agregar evento change para obtener el valor seleccionado
-        $('#portabilidad').change(function() {
-            const selectedValue = $(this).val();
-            console.log('Tamaño de pantalla seleccionado:', selectedValue);
-            allvalues.Portabilidad = selectedValue; // Guardar el valor en allvalues
-        });
-    }
-
-    function presupuesto() {
-        const opciones = `
-            <label for="Presupuesto">4- ¿Cuál es tu presupuesto?</label>
-            <select id="presupuesto" name="presupuesto">
-                <option value="bajo">Bajo (Menos de 500€)</option>
-                <option value="medio">Entre 500 y 1000</option>
-                <option value="alto">Entre 1000 y 1500</option>
-                <option value="Muy alto">Mas de 2000</option>
-            </select>
-        `;
-        dynamicDiv.empty();
-        dynamicDiv.append(opciones);
-    }
-
-    function almacenamiento() {
-        const opciones = `
-            <label for="Almacenamiento">5- ¿Qué capacidad de almacenamiento necesitas?</label>
-            <select id="almacenamiento" name="almacenamiento">
-                <option value="bajo">256 GB</option>
-                <option value="medio">512 GB</option>
-                <option value="alto">1 TB</option>
-                <option value="Muy alto">2 TB</option>
-            </select>
-        `;
-        dynamicDiv.empty();
-        dynamicDiv.append(opciones);
-    }
-
-    function velocidadAlmacenamiento() {
-        const opciones = `
-            <label for="Velocidad">5.1 - ¿Qué velocidad de almacenamiento quieres?</label>
-            <select id="velocdad" name="velocidad">
-                <option value="tortuga">Hdd (Lento pero con alta capacidad de almacenamiento)</option>
-                <option value="Hibidro">Mezcla entre HDD y SSD (Combina lo mejor de ambos mundos)</option>
-                <option value="Rapido">SSD (Muy rapido)</option>
-                <option value="NoImporta">No tiene importancia</option>
-            </select>
-        `;
-        dynamicDiv.empty();
-        dynamicDiv.append(opciones);
-    }
-
-    function bateria() {
-        const opciones = `
-            <label for="Bateria">6- ¿Qué duración de batería necesitas?</label>
-            <select id="bateria" name="bateria">
-                <option value="corta">Corta (Menos de 4 horas)</option>
-                <option value="media">Media (4-8 horas)</option>
-                <option value="larga">Larga (Más de 8 horas)</option>
-            </select>
-        `;
-        dynamicDiv.empty();
-        dynamicDiv.append(opciones);
-    }
-
-    function conexiones() {
-        const opciones = `
-            <label for="conexiones">7- ¿Qué tipo de conexiones necesitas?</label>
-            <select id="conexiones" name="conexiones">
-                <option value="usb">USB</option>
-                <option value="hdmi">HDMI</option>
-                <option value="ethernet">Ethernet</option>
-                <option value="wifi">WiFi</option>
-            </select>
-        `;
-        dynamicDiv.empty();
-        dynamicDiv.append(opciones);
-    }
-
-    function cantPuertos() {
-        const opciones = `
-            <label for="CantPuertos">8- ¿Cuántos puertos necesitas?</label>
-            <select id="cantPuertos" name="cantPuertos">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        `;
-        dynamicDiv.empty();
-        dynamicDiv.append(opciones);
-    }
-
-    function extras() {
-        const opciones = `
-            <label for="Extras">9- ¿Qué extras necesitas?</label>
-            <select id="extras" name="extras">
-                <option value="lector">Lector de huellas</option>
-                <option value="camara">Cámara web</option>
-                <option value="teclado">Teclado retroiluminado</option>
-                <option value="ninguno">Ninguno</option>
-            </select>
-        `;
-        dynamicDiv.empty();
-        dynamicDiv.append(opciones);
-    }
-
-    function prefenciaMarca(){
-        const opciones = `<label for="Preferencia">2- ¿Tienes preferencia por alguna marca?</label>
-        <select id="preferencia" name="preferencia">
-                <option value="Si">Si </option>
-                <option value="No">No</option>
-            </select>
-        `;
-        dynamicDiv.empty();
-        dynamicDiv.append(opciones);
-        $('#preferencia').change(function() {
-            if($(this).val() === "Si"){
-                dynamicDiv.append(`
-                    <label for="marca">2.1- ¿Qué marca prefieres?</label>
-                    <input type="text" name="marca" id="marca">
-                `);
-            } else {
-                $('#marca').parent().remove();
-            }
-        });
-    }
-
-    function llamadaOpciones(allStep, allvalues) {
-        switch(allStep) {
-            case 0:
-                allvalues.Proposito = casoDeUso;
-                break;
-            case 1:
-                rendimiento(casoDeUso);
-                allvalues.Rendimiento = $('#rendimiento').val();
-                break;
-            case 2:
-                prefenciaMarca();
-                allvalues.marca = $('#marca').val();
-                break;
-            case 3:
-                portatibilidad();
-                allvalues.Portabilidad =$('#portabilidad').val();
-                break;
-            case 4:
-                presupuesto();
-                allvalues.Presupuesto = $('#presupuesto').val();
-                break;
-            case 5:
-                almacenamiento();
-                allvalues.Almacenamiento = $('#almacenamiento').val();
-                break;
-            case 6:
-                velocidadAlmacenamiento();
-                allvalues.VelocidadDisco = $('#velocdad').val();
-                break;
-            case 7:
-                bateria();
-                allvalues.Bateria = $('#bateria').val();
-                break;
-            case 8:
-                conexiones();
-                allvalues.conexiones = $('#conexiones').val();
-                break;
-            case 9:
-                cantPuertos();
-                allvalues.CantPuertos = $('#cantPuertos').val();
-                break;
-            case 10:
-                extras();
-                allvalues.Extras = $('#extras').val();
-                console.log(allvalues);
-                break;
-        }
-    }
-
     // Función que nos lleva a la siguiente pregunta en el formulario
     function nextStep() {
+        // Guardar el valor seleccionado en allvalues
+        if (Step > 0) {
+            const question = questions[Step - 1];
+            allvalues[question.id.charAt(0).toUpperCase() + question.id.slice(1)] = $(`#${question.id}`).val();
+        } else {
+            allvalues.Proposito = case_use.val();
+        }
+
         allStep.push(Step);
         Step += 1;
-        allvalues.Proposito = casoDeUso;
-        
-        llamadaOpciones(Step, allvalues);
-        hidden(Step);
         if (Step > 0) {
             firstDiv.css('display', 'none');
         }
+
+        generateQuestion(Step);
+        hidden(Step);
+        console.log(allvalues);
     }
 
     // Función que nos lleva a la pregunta anterior en el formulario
@@ -267,56 +90,20 @@ $(document).ready(function () {
         if (Step > 0) {
             Step -= 1;
             allStep.pop();
-            // Eliminar el último valor de allvalues
-            switch(Step) {
-                case 0:
-                    allvalues.Proposito = '';
-                    break;
-                case 1:
-                    allvalues.Rendimiento = '';
-                    break;
-                case 2:
-                    allvalues.marca = '';
-                    break;
-                case 3:
-                    allvalues.Portabilidad = '';
-                    break;
-                case 4:
-                    allvalues.Presupuesto = '';
-                    break;
-                case 5:
-                    allvalues.Almacenamiento = '';
-                    break;
-                case 6:
-                    allvalues.VelocidadDisco = '';
-                    break;
-                case 7:
-                    allvalues.Bateria = '';
-                    break;
-                case 8:
-                    allvalues.conexiones = '';
-                    break;
-                case 9:
-                    allvalues.CantPuertos = '';
-                    break;
-                case 10:
-                    allvalues.Extras = '';
-                    break;
-            }
             dynamicDiv.empty();
             if (Step === 0) {
                 case_use.css('display', 'block');
                 firstDiv.css('display', 'block');
             } else {
-                llamadaOpciones(Step, allvalues);
+                generateQuestion(Step);
             }
             hidden(Step);
         }
+        console.log(allvalues);
     }
 
     // Evento para actualizar `casoDeUso` y pasar al siguiente paso
     buttonNext.click(function () {
-        casoDeUso = case_use.val();
         nextStep();
     });
 

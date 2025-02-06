@@ -3,28 +3,36 @@
 {% load static %}
 
 {% block content %}
+<!-- Añadir enlace a Bootstrap 5 -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'js/formLaptop.js' %}"></script>
-<div>
+<div class="container mt-5">
+<h1 class="display-4 text-center">
 {% block title %}Formulario Portátiles{% endblock %}
-
-<form id="laptop-form">
-    <div id="firtdiv">
-        <label for="id_use_case">1.- Selecciona el propósito principal:</label>
-        <select id="id_use_case" name="use_case">
+</h1>
+<form id="laptop-form" class="needs-validation" novalidate>
+    <div id="firtdiv" class="mb-3">
+        <label for="id_use_case" class="form-label">1.- Selecciona el propósito principal:</label>
+        <select id="id_use_case" name="use_case" class="form-select">
             <option value="basic">Oficina y tareas básicas</option>
             <option value="Estudios">Estudios</option>
             <option value="Programacion">Programación</option>
             <option value="DiseñoGraph">Diseño gráfico y edición de video</option>
             <option value="gaming">Gaming</option>
         </select>
+        <div class="invalid-feedback">
+            Por favor selecciona un propósito.
+        </div>
     </div>
-    <div id="dynamic-laptop-questions"></div>
+    <div id="dynamic-laptop-questions" class="mb-3"></div>
     
-    <input type="button" value="Siguiente" id="nextStep" onclick="nextStep()">
-    <input type="button" value="Anterior" id="previusStep" onclick="previusStep()">
-    <input type="button" value="Enviar" id="send" onclick="finish()">
+    <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-dark" id="previusStep" onclick="previusStep()">Anterior</button>
+        <button type="button" class="btn btn-dark" id="nextStep" onclick="nextStep()">Siguiente</button>
+        <button type="button" class="btn btn-dark" id="send" onclick="finish()">Enviar</button>
+    </div>
 </form>
-
 </div>
 {% endblock %}

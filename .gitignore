@@ -1,3 +1,24 @@
 
 /.vscode
 *.txt
+avisoLegal/__pycache__/urls.cpython-311.pyc
+avisoLegal/__pycache__/views.cpython-311.pyc
+contact/__pycache__/urls.cpython-311.pyc
+contact/__pycache__/views.cpython-311.pyc
+core/__pycache__/urls.cpython-311.pyc
+headphones/__pycache__/urls.cpython-311.pyc
+headphones/__pycache__/views.cpython-311.pyc
+keyboards/__pycache__/urls.cpython-311.pyc
+keyboards/__pycache__/views.cpython-311.pyc
+laptops/__pycache__/views.cpython-311.pyc
+laptops/__pycache__/urls.cpython-311.pyc
+monitor/__pycache__/urls.cpython-311.pyc
+monitor/__pycache__/views.cpython-311.pyc
+mouse/__pycache__/urls.cpython-311.pyc
+mouse/__pycache__/views.cpython-311.pyc
+phone/__pycache__/urls.cpython-311.pyc
+TecnoFind/__pycache__/urls.cpython-311.pyc
+TecnoFind/__pycache__/settings.cpython-311.pyc
+tablets/__pycache__/views.cpython-311.pyc
+tablets/__pycache__/urls.cpython-311.pyc
+phone/__pycache__/views.cpython-311.pyc
