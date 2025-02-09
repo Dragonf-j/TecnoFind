@@ -8,6 +8,7 @@ $(document).ready(function () {
     const firstDiv = $('#firtdiv');
     const buttonReview = $('#reviewButton');
     const Divreview = $('#review');
+    const progressBar = $('#progress-bar');
     
     // Declaración de variables
     let Step = 0;
@@ -23,8 +24,8 @@ $(document).ready(function () {
         conexiones: [],
         CantPuertos: '',
         Extras: [],
-        marca:'',
-        otraMarca:''
+        Marca:'',
+        OtraMarca:''
     };
 
     // Array para guardar las preguntas con un número que indique su posición
@@ -109,6 +110,14 @@ $(document).ready(function () {
         }
     }
 
+    // Función para actualizar la barra de progreso
+    function updateProgressBar(step) {
+        const totalSteps = questions.length;
+        const progress = (step / totalSteps) * 100;
+        progressBar.css('width', `${progress}%`);
+        progressBar.attr('aria-valuenow', progress);
+    }
+
     // Función que nos lleva a la siguiente pregunta en el formulario
     function nextStep() {
         // Guardar el valor seleccionado en allvalues
@@ -142,6 +151,7 @@ $(document).ready(function () {
 
         generateQuestion(Step);
         hidden(Step);
+        updateProgressBar(Step);
         console.log(allvalues);
     }
 
@@ -170,14 +180,25 @@ $(document).ready(function () {
             }
             hidden(Step);
             Divreview.css('display', 'none'); // Ocultar el resumen de respuestas
+            updateProgressBar(Step);
         }
         console.log(allvalues);
     }
 
     function review() {
+        if (!Array.isArray(allvalues.conexiones)) {
+            allvalues.conexiones = [];
+        }
+        if (!Array.isArray(allvalues.Extras)) {
+            allvalues.Extras = [];
+        }
         allvalues.conexiones = allvalues.conexiones.join(', ');
         allvalues.Extras = allvalues.Extras.join(', ');
         Divreview.empty();
+        let marca = allvalues.Marca;
+        if (allvalues.Marca === 'otra' && allvalues.OtraMarca.trim() !== '') {
+            marca = allvalues.OtraMarca;
+        }
         Divreview.append(`<h3>Resumen de tus respuestas</h3>
                             <p>Propósito: ${allvalues.Proposito}</p>
                             <p>Rendimiento: ${allvalues.Rendimiento}</p>
@@ -188,13 +209,10 @@ $(document).ready(function () {
                             <p>Batería: ${allvalues.Bateria}</p>
                             <p>Conexiones: ${allvalues.conexiones}</p>
                             <p>Cantidad de puertos: ${allvalues.CantPuertos}</p>
-                            <p>Extras: ${allvalues.Extras}</p>`);
-        let marca = allvalues.marca;
-        if (allvalues.marca === 'otra' && allvalues.OtraMarca.trim() !== '') {
-            marca = allvalues.OtraMarca;
-        }
-        Divreview.append(`<p>Marca: ${marca}</p>`);
+                            <p>Extras: ${allvalues.Extras}</p>
+                            <p>Marca elegida: ${marca}</p>`);
         firstDiv.css('display', 'none');
+        Divreview.css('display', 'block'); // Mostrar el resumen de respuestas
     }
 
     // Evento para actualizar `casoDeUso` y pasar al siguiente paso
@@ -215,5 +233,6 @@ $(document).ready(function () {
     // Inicialización
     (function initialize() {
         hidden(Step);
+        updateProgressBar(Step);
     })();
 });
