@@ -19,91 +19,103 @@
         <!--Navegacion-->
         <nav class="nav">
             <ul class=" nav nav-tabs nav-justified">
-            <!-- Dropdown Móvil -->
-                <li class="nav-item dropdown ">
-                    <button class="nav-link dropdown-toggle" id="movilDropdown" role="button" data-bs-toggle="dropdown" >Móvil</button>
-                    <ul class="dropdown-menu">
-                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
-                            <a href="{% url 'formPhones' %}" class="dropdown-item">Formulario para elegir tu móvil</a>
-                        </li>
-                        <li class="{% if request.path == '/todos/' %}active{% endif %}"> 
-                            <a href="{% url 'allphones' %}" class="dropdown-item">Todos los móviles</a>
-                        </li>
-                    </ul>
-                </li>
-                <!--Auriculares-->
+                <!-- Portátiles -->
                 <li class="nav-item dropdown">
-                    <button class="nav-link dropdown-toggle" id="AuricularDropdown" role="button" data-bs-toggle="dropdown">Auriculares</button>
-                    <ul class="dropdown-menu">
-                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
-                            <a href="{% url 'formheadphones' %}" class="dropdown-item">Formulario para elegir tu Auricular</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="portatilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Portátiles
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="portatilDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:formulario_portatil' %}">Formulario para elegir tu portátil</a>
                         </li>
-                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
-                            <a href="{% url 'allheadphones' %}" class="dropdown-item">Todos los Auriculares</a>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:listar_dispositivos' tipo='portatiles' %}">Todos los portátiles</a>
                         </li>
                     </ul>
                 </li>
-                <!--Tablets-->
+                <!-- Móviles -->
                 <li class="nav-item dropdown">
-                    <button class="nav-link dropdown-toggle" id="TabletDropdown" role="button" data-bs-toggle="dropdown">Tablet</button>
-                    <ul class="dropdown-menu">
-                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
-                            <a href="{% url 'formtablets' %}" class="dropdown-item">Formulario para elegir tu tablet</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="movilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Móviles
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="movilDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:formulario_movil' %}">Formulario para elegir tu móvil</a>
                         </li>
-                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
-                            <a href=" {% url 'alltablets' %}" class="dropdown-item">Todos las tablets</a>
-                        </li>
-                    </ul>
-                </li>
-                <!--Portatiles-->
-                <li class="nav-item dropdown"> 
-                    <button class="nav-link dropdown-toggle" id="PortatilDropdown" role="button" data-bs-toggle="dropdown">Portátil</button>
-                    <ul class="dropdown-menu">
-                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
-                            <a href="{% url 'formLaptops' %}" class="dropdown-item">Formulario para elegir tu portátil</a>
-                        </li>
-                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
-                            <a href="{% url 'allLaptops' %}" class="dropdown-item">Todos los portátiles</a>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:listar_dispositivos' tipo='moviles' %}">Todos los móviles</a>
                         </li>
                     </ul>
                 </li>
-                <!--Ratones-->
+                <!-- Tablets -->
                 <li class="nav-item dropdown">
-                    <button class="nav-link dropdown-toggle" id="RatonDropdown" role="button" data-bs-toggle="dropdown">Ratón</button>
-                    <ul class="dropdown-menu">
-                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
-                            <a href="{% url 'formmouse' %}" class="dropdown-item">Formulario para elegir tu raton</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="tabletDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tablets
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="tabletDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:formulario_tablet' %}">Formulario para elegir tu tablet</a>
                         </li>
-                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
-                            <a href="{% url 'allmouse' %}" class="dropdown-item">Todos los ratones</a>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:listar_dispositivos' tipo='tablets' %}">Todas las tablets</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--monitores-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="monitorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Monitores
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="monitorDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:formulario_monitor' %}">Formulario para elegir tu monitor</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:listar_dispositivos' tipo='monitores' %}">Todos los monitores</a>
                         </li>
                     </ul>
                 </li>
                 <!--Teclados-->
                 <li class="nav-item dropdown">
-                    <button class="nav-link dropdown-toggle" id="TecladoDropdown" role="button" data-bs-toggle="dropdown">Teclado</button>
-                    <ul class="dropdown-menu">
-                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
-                            <a href="{% url 'formkeyboards' %}" class="dropdown-item">Formulario para elegir tu teclado</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="tecladoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Teclados
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="tecladoDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:formulario_teclado' %}">Formulario para elegir tu teclado</a>
                         </li>
-                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
-                            <a href="{% url 'formkeyboards' %}" class="dropdown-item">Todos los teclados</a>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:listar_dispositivos' tipo='teclados' %}">Todos los teclados</a>
                         </li>
                     </ul>
                 </li>
-                <!--Monitor-->
+                <!--Ratones-->
                 <li class="nav-item dropdown">
-                    <button class="nav-link dropdown-toggle" id="MonitorDropdown" role="button" data-bs-toggle="dropdown">Monitor</button>
-                    <ul class="dropdown-menu">
-                        <li class="{% if request.path == '/formulario/' %}active{% endif %}">
-                            <a href="{% url 'formMonitor' %}" class="dropdown-item">Formulario para elegir tu Monitor</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="ratonDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ratones
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="ratonDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:formulario_raton' %}">Formulario para elegir tu ratón</a>
                         </li>
-                        <li class="{% if request.path == '/todos/' %}active{% endif %}">
-                            <a href="{% url 'allMonitor' %}" class="dropdown-item">Todos los Monitores</a>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:listar_dispositivos' tipo='ratones' %}">Todos los ratones</a>
                         </li>
                     </ul>
                 </li>
-
+                <!--Auriculares-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="auricularDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Auriculares
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="auricularDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:formulario_auricular' %}">Formulario para elegir tus auriculares</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'dispositivos:listar_dispositivos' tipo='auriculares' %}">Todos los auriculares</a>
+                        </li>
+                    </ul>
             </ul>
         </nav>
     </header>

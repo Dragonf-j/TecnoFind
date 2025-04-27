@@ -19,15 +19,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('avisoLegal/',include('avisoLegal.urls')),
     path('contact/',include('contact.urls')),
+    path('dispositivos/', include('dispositivos.urls')),
     path('', include('core.urls')),
-    path('headphones/', include('headphones.urls')),
-    path('keyboards/',include('keyboards.urls')),
     path('laptops/', include('laptops.urls')),
-    path('monitor/', include('monitor.urls')),
-    path('mouse/', include('mouse.urls')),
-    path('phone/', include('phone.urls')),
-    path('tablets/', include('tablets.urls'))
 
 ]

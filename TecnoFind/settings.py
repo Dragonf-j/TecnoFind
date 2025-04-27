@@ -37,16 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'avisoLegal',
     'contact',
     'core',
-    'headphones',
-    'keyboards',
+    'dispositivos',
     'laptops',
-    'monitor',
-    'mouse',
-    'phone',
-    'tablets'
+
 ]
 
 MIDDLEWARE = [
